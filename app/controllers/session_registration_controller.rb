@@ -1,15 +1,29 @@
 class SessionRegistrationController < ApplicationController
 respond_to :html
 
-  def register
-    registration = SessionRegistering.new(params[:parent_user_id],
-                                          params[:child_user_id],
-                                          params[:play_session_id])
-    play_session = registration.execute
+  def index
+    setup = SessionRegistering.start(current_user_id: current_user.id)
+    @children = setup[:children]
+    @semesters = setup[:semesters]
+  end
 
-    respond_with play_session do |format|
-      format.html { redirect_to play_sessions_path(play_session) }
+  def browse
+    open_sessions = SessionRegistering.browse(semester_id: params[:semester_id])
+    @open_sessions = open_sessions.to_json
+  end
+
+  def register
+    play_session = SessionRegistering.register(child_id: params[:child_id], play_session_id: params[:play_session_id])
+    if play_session
+      redirect_to confirmation
+    else
+      #some sort of flash error
     end
+
+  end
+
+  def confirmation
+    @confirmation = SessionRegistering.finish(reg_id: params[:registration_id])
   end
 
 end

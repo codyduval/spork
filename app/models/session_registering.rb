@@ -4,52 +4,68 @@
 # Preconditions: parent is already authenticated and registered
 
 class SessionRegistering
+  attr_accessor :parent, :child, :semester, :play_session
+
+  def initialize(current_user_id: nil,semester_id:  nil,
+                 child_id:  nil, play_session_id:  nil,
+                 reg_id:  nil)
+    @parent = find_person(current_user_id).extend(Parent)
+    @child = find_person(child_user_id).extend(Child)
+    @semester = find_semester(semester_id).extend(SelectedSemester)
+    @play_session = find_play_session(play_session_id).extend(OpenPlaySession)
+
+  end
 
   def self.start(current_user_id)
-    SessionRegistering.new.start(current_user_id)
+    SessionRegistering.new(current_user_id: current_user_id).start
   end
 
   def self.browse(semester_id)
-    SessionRegistering.new.browse(semester_id)
+    SessionRegistering.new(semester_id: semester_id).browse
   end
 
   def self.register(child_id, play_session_id)
-    SessionRegistering.new.register(child_id, play_session_id)
+    SessionRegistering.new(child_id: child_id, play_session_id: play_session_id).register
   end
 
-  def start(current_user_id)
-    parent = find_person(current_user_id).extend(Parent)
-    children = parent.children
-    semesters = open_semesters
-    {:children => children, :semesters => semesters}
+  def self.finish(registration_id)
+    SessionRegistering.new(reg_id: registration_id).finish
   end
 
-  def browse(semester_id)
-    semester = find_semester(semester_id).extend(SelectedSemester)
-    open_sessions = semester.open_sessions
+  def start
+    {:children => @parent.children, :semesters => open_semesters}
+  end
+
+  def browse
+    open_sessions = @semester.open_sessions
     open_sessions
   end
 
-  def register(child_id, play_session_id)
-    child = find_child(child_user_id)
-    play_session = find_play_session(play_session_id).extend(OpenPlaySession)
-    play_session.add(child)
-    play_session.save
+  def register
+    @play_session.add(child)
+    if @play_session.save
+      @play_session
+    else
+      false
+    end
   end
 
-  def finish(registration_id)
+  def finish
     confirm = find_registration(registration_id)
   end
 
-  module SelectedSemester
-    def open_sessions
-      self.play_sessions
-    end
+  module Child
   end
 
   module Parent
     def children
       self.children
+    end
+  end
+
+  module SelectedSemester
+    def open_sessions
+      self.play_sessions
     end
   end
 
