@@ -328,6 +328,7 @@ DEPENDENCIES
   launchy
   mailcatcher
   pg
+  pry
   rails (= 4.1.8)
   rails_12factor
   roadie (~> 2.4.3)
