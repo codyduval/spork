@@ -11,6 +11,13 @@ describe SessionRegistering do
   end
 
   context 'when performing the registration' do
+    it 'starts by sending ids of children and open semesters', :focus => true do
+      current_user = create(:user)
+      
+      children_and_semesters = SessionRegistering.start(current_user.id)
+      expect(children_and_semesters).to equal(1)
+    end
+
     it 'assigns a child to a session' do
       parent = create(:user)
       child = create(:child)

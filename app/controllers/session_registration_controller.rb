@@ -5,6 +5,7 @@ respond_to :html
     setup = SessionRegistering.start(current_user_id: current_user.id)
     @children = setup[:children]
     @semesters = setup[:semesters]
+    #@view = SessionRegistrationView.index
   end
 
   def browse

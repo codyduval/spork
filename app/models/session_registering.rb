@@ -7,13 +7,12 @@ class SessionRegistering
   attr_accessor :parent, :child, :semester, :play_session
 
   def initialize(current_user_id: nil,semester_id:  nil,
-                 child_id:  nil, play_session_id:  nil,
+                 child_user_id: nil, play_session_id:  nil,
                  reg_id:  nil)
     @parent = find_person(current_user_id).extend(Parent)
     @child = find_person(child_user_id).extend(Child)
     @semester = find_semester(semester_id).extend(SelectedSemester)
     @play_session = find_play_session(play_session_id).extend(OpenPlaySession)
-
   end
 
   def self.start(current_user_id)
@@ -58,9 +57,6 @@ class SessionRegistering
   end
 
   module Parent
-    def children
-      self.children
-    end
   end
 
   module SelectedSemester
@@ -80,7 +76,7 @@ class SessionRegistering
   end
 
   def find_person(user_id)
-    User.find_by_id(child_id)
+    User.find_by_id(user_id)
   end
 
   def find_play_session(play_session_id)
