@@ -2,7 +2,7 @@ class SessionRegistrationController < ApplicationController
 
   def index
     current_user = User.last
-    setup = SessionRegistering.start(current_user_id: current_user.id)
+    setup = SessionRegistering.start(current_user.id)
     @children = setup[:children]
     @semesters = setup[:semesters]
     #@view = SessionRegistrationView.index

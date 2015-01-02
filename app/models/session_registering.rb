@@ -72,15 +72,15 @@ class SessionRegistering
   end
 
   def find_semester(semester_id)
-    Semester.find_by_id(semester_id)
+    Semester.find(semester_id)
   end
 
   def find_person(user_id)
-    User.find_by_id(user_id)
+    User.find(user_id)
   end
 
   def find_play_session(play_session_id)
-    PlaySession.find_by_id(play_session_id)
+    PlaySession.find(play_session_id)
   end
 
   def open_semesters
