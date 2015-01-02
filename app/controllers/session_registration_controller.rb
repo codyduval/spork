@@ -1,7 +1,7 @@
 class SessionRegistrationController < ApplicationController
-respond_to :html
 
   def index
+    current_user = User.last
     setup = SessionRegistering.start(current_user_id: current_user.id)
     @children = setup[:children]
     @semesters = setup[:semesters]
@@ -20,7 +20,6 @@ respond_to :html
     else
       #some sort of flash error
     end
-
   end
 
   def confirmation
