@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.0'
 # Use Postgre as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -13,7 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
+gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -47,6 +47,7 @@ gem "autoprefixer-rails"
 gem "simple_form"
 gem "roadie", "~> 2.4.3" #inlines css in email
 gem "flat-ui-rails"
+gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
 
 group :development do
   gem "mailcatcher", require: false
