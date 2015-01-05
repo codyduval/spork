@@ -19,25 +19,12 @@ class SessionRegistering
     SessionRegistering.new(current_user_id: current_user_id).start
   end
 
-  def self.browse(semester_id)
-    SessionRegistering.new(semester_id: semester_id).browse
-  end
-
   def self.register(child_id, play_session_id)
     SessionRegistering.new(child_id: child_id, play_session_id: play_session_id).register
   end
 
-  def self.finish(registration_id)
-    SessionRegistering.new(reg_id: registration_id).finish
-  end
-
   def start
-    {:children => @parent.children, :semesters => open_semesters}
-  end
-
-  def browse
-    open_sessions = @semester.open_sessions
-    open_sessions
+    SessionRegisteringHomePresenter.new(@parent, @parent.children, open_semesters)
   end
 
   def register
@@ -47,10 +34,6 @@ class SessionRegistering
     else
       false
     end
-  end
-
-  def finish
-    confirm = find_registration(registration_id)
   end
 
   module Child
