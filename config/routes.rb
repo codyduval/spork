@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  root 'session_registration#home'
+
   get 'bootstrap_demo/index'
-  get 'session_registration/index'
+  get 'session_registration/home'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

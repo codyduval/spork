@@ -1,7 +1,9 @@
 class SessionRegistrationController < ApplicationController
 
   def home
-    view = SessionRegistering.start(current_user_id: current_user.id)
+    #temp until authorization/authenticatin
+    current_user = User.last
+    view = SessionRegistering.start(current_user.id)
     @view.as_json
   end
 
