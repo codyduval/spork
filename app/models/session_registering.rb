@@ -16,7 +16,8 @@ class SessionRegistering
 
   def self.start(current_user_id)
     parent = User.find(current_user_id).extend(Parent)
-    SessionRegisteringHomePresenter.new(parent, parent.kids, open_semesters)
+    sessions = PlaySession.all
+    SessionRegisteringHomePresenter.new(parent, parent.kids, open_semesters, sessions).home
   end
 
   def self.register(child_id, play_session_id)
@@ -74,7 +75,7 @@ class SessionRegistering
       self.children << child
     end
 
-    def children
+    def kids
       self.class.class_eval do
         has_and_belongs_to_many :users
       end

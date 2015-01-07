@@ -1,18 +1,9 @@
 /** @jsx React.DOM */
-var HelloWorld = React.createClass({
-  render: function() {
-    return (
-      <div className='HelloWorld'>
-        Hello, world!
-      </div>
-      );
-  }
-});
 
 var ready = function () {
-  React.renderComponent(
-    <HelloWorld />,
-    document.getElementById('open_sessions')
+  React.render(
+    <SessionsBox url="/session_registration/open_sessions.json" />,
+    document.getElementById('open-sessions')
   );
 };
 
