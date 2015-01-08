@@ -16,6 +16,7 @@ class SessionRegisteringHomePresenter
     @sessions.each do |session|
       formatted_session = {}
       formatted_session[:name] = session.name
+      formatted_session[:semester] = session.semester.name
       formatted_session[:start_time] = session.start_time.to_formatted_s(:time)
       formatted_session[:end_time] = session.end_time.to_formatted_s(:time)
       formatted_session[:days_of_week] = days_of_week(session)

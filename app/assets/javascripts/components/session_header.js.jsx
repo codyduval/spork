@@ -4,16 +4,23 @@ var SemesterFilter = React.createClass({
   render: function() {
     return (
       <ul className="nav nav-pills">
-        <li className="active">
-          <a>Fall/Winter 2014</a>
-        </li>
-        <li>
-          <a>Winter/Spring 2015</a>
-        </li>
+        <SemesterButton/>
+        <SemesterButton/>
       </ul>
     );
   }
 });
+
+var SemesterButton = React.createClass({
+  render: function() {
+    return (
+      <li className="active">
+        <a>Fall/Winter 2014</a>
+      </li>
+    );
+  }
+});
+
 
 var SessionHeader = React.createClass({
   render: function() {

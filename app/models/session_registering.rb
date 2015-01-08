@@ -81,12 +81,6 @@ class SessionRegistering
       end
       self.children
     end
-
-    def semester
-      self.class.class_eval do
-        belongs_to :semester
-      end
-    end
   end
 
   def find_semester(semester_id)

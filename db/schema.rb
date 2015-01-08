@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219183001) do
+ActiveRecord::Schema.define(version: 20150108182916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "play_sessions", force: true do |t|
+  create_table "play_sessions", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
+    t.string   "name",        limit: 255
     t.time     "start_time"
     t.time     "end_time"
     t.boolean  "monday"
@@ -30,15 +30,16 @@ ActiveRecord::Schema.define(version: 20141219183001) do
     t.boolean  "saturday"
     t.boolean  "sunday"
     t.integer  "capacity"
+    t.integer  "semester_id"
   end
 
-  create_table "play_sessions_users", id: false, force: true do |t|
+  create_table "play_sessions_users", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "play_session_id"
   end
 
-  create_table "semesters", force: true do |t|
-    t.string   "name"
+  create_table "semesters", force: :cascade do |t|
+    t.string   "name",         limit: 255
     t.datetime "start_date"
     t.datetime "end_date"
     t.boolean  "open_for_reg"
@@ -46,12 +47,12 @@ ActiveRecord::Schema.define(version: 20141219183001) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
+    t.string   "first_name", limit: 255
+    t.string   "last_name",  limit: 255
+    t.string   "email",      limit: 255
     t.integer  "age_years"
     t.integer  "age_months"
     t.boolean  "admin"
