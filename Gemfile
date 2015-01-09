@@ -47,7 +47,8 @@ gem "autoprefixer-rails"
 gem "simple_form"
 gem "roadie", "~> 2.4.3" #inlines css in email
 gem "flat-ui-rails"
-gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
+gem "react-rails", "~> 1.0.0.pre", github: "reactjs/react-rails"
+gem "lodash-rails"
 
 group :development do
   gem "mailcatcher", require: false

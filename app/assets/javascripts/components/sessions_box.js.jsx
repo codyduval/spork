@@ -7,7 +7,7 @@ var SessionsBox = React.createClass({
   render: function () {
     return (
       <div>
-        <SemesterFilter />
+        <SemesterFilter sessions={this.state.sessions} />
         <table className="table">
           <SessionHeader />
           <SessionList sessions={this.state.sessions} />

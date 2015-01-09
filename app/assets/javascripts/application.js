@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require lodash
 //= require react
 //= require react_ujs
 //= require_tree .

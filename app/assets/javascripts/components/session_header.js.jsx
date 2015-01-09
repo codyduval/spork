@@ -2,20 +2,31 @@
 
 var SemesterFilter = React.createClass({
   render: function() {
+    var names = []
+    var semesterNames = this.props.sessions.map(function (session, index) {
+      if (names.indexOf(session.semester) < 0 ) { 
+        names.push(session.semester);
+        return (
+          <SemesterButton name={session.semester} key={index} />
+          );
+      }
+    });
     return (
       <ul className="nav nav-pills">
-        <SemesterButton/>
-        <SemesterButton/>
+        {semesterNames}
       </ul>
     );
   }
 });
 
 var SemesterButton = React.createClass({
+  getInitialState: function () {
+    return {selected: ""};
+  },
   render: function() {
     return (
-      <li className="active">
-        <a>Fall/Winter 2014</a>
+      <li className={this.state.selected}>
+        <a>{this.props.name}</a>
       </li>
     );
   }
