@@ -1,32 +1,19 @@
 /** @jsx React.DOM */
 
-var SemesterFilter = React.createClass({
-  render: function() {
-    var names = []
-    var semesterNames = this.props.sessions.map(function (session, index) {
-      if (names.indexOf(session.semester) < 0 ) { 
-        names.push(session.semester);
-        return (
-          <SemesterButton name={session.semester} key={index} />
-          );
-      }
-    });
-    return (
-      <ul className="nav nav-pills">
-        {semesterNames}
-      </ul>
-    );
-  }
-});
-
 var SemesterButton = React.createClass({
+  handleFilter: function (e) {
+    this.setState({selected: "active"})
+    this.props.onFilter(this.props.name);
+  },
+
   getInitialState: function () {
     return {selected: ""};
   },
+
   render: function() {
     return (
       <li className={this.state.selected}>
-        <a>{this.props.name}</a>
+        <a onClick={this.handleFilter}>{this.props.name}</a>
       </li>
     );
   }
