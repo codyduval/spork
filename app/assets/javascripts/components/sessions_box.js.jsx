@@ -6,42 +6,34 @@ var SessionsBox = React.createClass({
     var filteredSessions = _.filter(this.state.sessions, { 'semester': semesterName });
     this.setState({
       filteredSessions: filteredSessions,
-      buttonSelected: !this.state.buttonSelected
+      selectedSemester: semesterName
     });
   },
 
   componentDidMount: function() {
+    return { filteredSessions: this.handleFilter(this.state.selectedSemester) };
   },
 
   getInitialState: function () {
-
-    var buttons = function (sessions) {
-      var names = _.uniq(_.pluck(sessions, "semester"));
-      var semesterButtons = names.map(function (name, index) { 
-        return (
-          <SemesterButton name={name} key={index} onFilter={this.handleFilter} isSelected={false} />
-          );
-      }.bind(this));
-    }
-
+    var defaultSemester = _.first(_.uniq(_.pluck(this.props.initialSessions, "semester")));
     return {sessions: this.props.initialSessions,
-            filteredSessions: this.props.initialSessions,
-            semesterButtons: buttons(this.props.initialSessions) 
+            filteredSessions: [],
+            selectedSemester: defaultSemester
     };
   },
 
   render: function () {
-    var names = _.uniq(_.pluck(this.state.sessions, "semester"));
-    var semesterNames = names.map(function (name, index) { 
+    var names = _.uniq(_.pluck(this.props.initialSessions, "semester"));
+    var semesterButtons = names.map(function (name, index) { 
       return (
-        <SemesterButton name={name} key={index} onFilter={this.handleFilter} isSelected={this.state.buttonSelected} />
+        <SemesterButton name={name} key={index} onFilter={this.handleFilter} currentSelected={this.state.selectedSemester} />
         );
     }.bind(this));
 
     return (
       <div>
         <ul className="nav nav-pills">
-          {semesterNames}
+          {semesterButtons}
         </ul>
         <table className="table">
           <SessionHeader />

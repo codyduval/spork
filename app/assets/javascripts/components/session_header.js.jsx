@@ -1,20 +1,16 @@
 /** @jsx React.DOM */
 
 var SemesterButton = React.createClass({
-  handleFilter: function (e) {
-    this.setState({selected: "active"})
-    this.props.onFilter(this.props.name);
-  },
 
-  getInitialState: function () {
-    return {selected: ""};
+  handleFilter: function (e) {
+    this.props.onFilter(this.props.name);
   },
 
   render: function() {
 
     var classString;
 
-    if(this.props.isSelected) {
+    if(this.props.currentSelected === this.props.name) {
       classString = 'active';
     } else {
       classString = '';
