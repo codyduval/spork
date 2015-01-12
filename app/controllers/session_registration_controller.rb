@@ -1,5 +1,6 @@
 class SessionRegistrationController < ApplicationController
 
+<<<<<<< HEAD
   def index
 <<<<<<< HEAD
     @children = current_user.children
@@ -19,25 +20,27 @@ class SessionRegistrationController < ApplicationController
     @children = setup[:children]
     @semesters = setup[:semesters]
     #@view = SessionRegistrationView.index
+=======
+  def home
+    current_user = User.last
+    @sessions = SessionRegistering.start(current_user.id)
+>>>>>>> reset-to-previous
   end
 
-  def browse
-    open_sessions = SessionRegistering.browse(semester_id: params[:semester_id])
-    @open_sessions = open_sessions.to_json
+  def open_sessions
+    current_user = User.last
+    view = SessionRegistering.start(current_user.id)
+    render json: view
   end
 >>>>>>> add-react
 
   def register
     play_session = SessionRegistering.register(child_id: params[:child_id], play_session_id: params[:play_session_id])
     if play_session
-      redirect_to confirmation
+      #yay
     else
       #some sort of flash error
     end
-  end
-
-  def confirmation
-    @confirmation = SessionRegistering.finish(reg_id: params[:registration_id])
   end
 
 end

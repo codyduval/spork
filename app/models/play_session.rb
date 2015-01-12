@@ -6,6 +6,9 @@ class PlaySession < ActiveRecord::Base
   belongs_to :semester
 =======
   belongs_to :semester
+<<<<<<< HEAD
   has_and_belongs_to_many :users
 >>>>>>> add-react
+=======
+>>>>>>> reset-to-previous
 end
