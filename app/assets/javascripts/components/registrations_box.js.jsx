@@ -2,18 +2,11 @@
 
 var RegistrationsBox = React.createClass({
 
-  getInitialState: function () {
-    return { sessions: this.props.initialSessions,
-             user: this.props.user,
-             registrations: [],
-             kids: this.props.kids };
-  },
-
   render: function () {
     return (
       <div>
         <table className="table">
-          <RegistrationsList registrations={this.state.registrations} />
+          <RegistrationsList selectedSession={this.props.selectedSession} kids={this.props.kids} />
         </table>
       </div>
       );

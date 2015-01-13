@@ -2,18 +2,14 @@
 
 var SessionList = React.createClass({
 
-  handleSelect: function(sessionName) {
-    this.setState({ selectedSession: sessionName });
-  },
-
-  getInitialState: function () {
-    return {selectedSession: ""};
+  handleSelect: function (e) {
+    this.props.onSelect(e);
   },
 
   render: function () {
     var sessionNodes = this.props.sessions.map(function (session, index) {
       return (
-        <Session name={session.name} start_time={session.start_time} end_time={session.end_time} days_of_week={session.days_of_week} key={index} onSelect={this.handleSelect} selectedSession={this.state.selectedSession} />
+        <Session name={session.name} start_time={session.start_time} end_time={session.end_time} days_of_week={session.days_of_week} key={index} onSelect={this.handleSelect} selectedSession={this.props.selectedSession} />
         );
     }.bind(this));
 

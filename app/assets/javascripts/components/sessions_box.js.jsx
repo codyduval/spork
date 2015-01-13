@@ -2,6 +2,10 @@
 
 var SessionsBox = React.createClass({
 
+  handleSelect: function (e) {
+    this.props.onSelect(e);
+  },
+
   handleFilter: function(semesterName) {
     var filteredSessions = _.filter(this.props.initialSessions, { 'semester': semesterName });
     this.setState({
@@ -36,7 +40,7 @@ var SessionsBox = React.createClass({
         </ul>
         <table className="table">
           <SessionHeader />
-          <SessionList sessions={this.state.filteredSessions} selectedSession={this.props.selectedSession} />
+          <SessionList sessions={this.state.filteredSessions} selectedSession={this.props.selectedSession} onSelect={this.handleSelect}/>
         </table>
       </div>
       );

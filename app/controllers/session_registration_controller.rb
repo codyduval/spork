@@ -1,12 +1,12 @@
 class SessionRegistrationController < ApplicationController
 
   def home
-    current_user = User.last
+    current_user = User.first
     @home = SessionRegistering.start(current_user.id)
   end
 
   def open_sessions
-    current_user = User.last
+    current_user = User.first
     view = SessionRegistering.start(current_user.id)
     render json: view
   end
