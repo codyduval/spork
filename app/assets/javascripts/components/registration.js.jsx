@@ -31,7 +31,7 @@ var Registration = React.createClass({
         <div className="col-md-8">
           <SessionsBox initialSessions={this.state.sessions} selectedSession={this.state.selectedSession} onSelect={this.handleSelect} />
         </div>
-        <div className="col-md-6">
+        <div className="col-md-6 col-md-offset-2">
           {regBox}
         </div>
       </div>
