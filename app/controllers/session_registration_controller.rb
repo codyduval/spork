@@ -2,7 +2,7 @@ class SessionRegistrationController < ApplicationController
 
   def home
     current_user = User.last
-    @sessions = SessionRegistering.start(current_user.id)
+    @home = SessionRegistering.start(current_user.id)
   end
 
   def open_sessions

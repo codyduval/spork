@@ -8,7 +8,9 @@ class SessionRegisteringHomePresenter
   end
 
   def home
-    formatted_sessions 
+    { :sessions => formatted_sessions,
+      :user => @parent,
+      :kids => @children }  
   end
 
   def formatted_sessions

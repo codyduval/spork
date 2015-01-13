@@ -3,7 +3,7 @@
 var SessionsBox = React.createClass({
 
   handleFilter: function(semesterName) {
-    var filteredSessions = _.filter(this.state.sessions, { 'semester': semesterName });
+    var filteredSessions = _.filter(this.props.initialSessions, { 'semester': semesterName });
     this.setState({
       filteredSessions: filteredSessions,
       selectedSemester: semesterName
@@ -16,8 +16,7 @@ var SessionsBox = React.createClass({
 
   getInitialState: function () {
     var defaultSemester = _.first(_.uniq(_.pluck(this.props.initialSessions, "semester")));
-    return {sessions: this.props.initialSessions,
-            filteredSessions: [],
+    return {filteredSessions: [],
             selectedSemester: defaultSemester
     };
   },
@@ -37,7 +36,7 @@ var SessionsBox = React.createClass({
         </ul>
         <table className="table">
           <SessionHeader />
-          <SessionList sessions={this.state.filteredSessions} />
+          <SessionList sessions={this.state.filteredSessions} selectedSession={this.props.selectedSession} />
         </table>
       </div>
       );

@@ -24,7 +24,6 @@ var SemesterButton = React.createClass({
   }
 });
 
-
 var SessionHeader = React.createClass({
   render: function() {
     return (
@@ -34,6 +33,7 @@ var SessionHeader = React.createClass({
           <td><h2>Start Time</h2></td>
           <td><h2>End Time</h2></td>
           <td><h2>Days of Week</h2></td>
+          <td></td>
         </tr>
       </thead>
     );
